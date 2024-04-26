@@ -59,15 +59,14 @@ def save():
             password_entry.delete(0, END)
 
 def find_password():
-    search_term = website_entry.get().lower()
+    website = website_entry.get().lower()
     try:
         with open("data.json", "r") as data_file:
             data = json.load(data_file)
-            if search_term in data:
-                messagebox.showinfo(title="Found!", message=f"Username: {data[search_term]['email']} \nPassword: {data[search_term]['password']}")
-
-                print(f"Username: {data[search_term]['email']}")
-                print(f"Password: {data[search_term]['password']}")
+            if website in data:
+                email = data[website]['email']
+                password = data[website]['password']
+                messagebox.showinfo(title="Found!", message=f"Username: {email}\nPassword: {password}")
             else:
                 messagebox.showinfo(title="Not Found",
                                     message="No Details for the website exists")
